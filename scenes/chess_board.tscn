@@ -1,0 +1,88 @@
+[gd_scene load_steps=6 format=3 uid="uid://nbquqvf1qr7t"]
+
+[ext_resource type="TileSet" uid="uid://cnwmh6g0i38iq" path="res://scenes/board_tilemap.tres" id="1_2hdnn"]
+[ext_resource type="Texture2D" uid="uid://saqhacj4dutk" path="res://resources/textures/board.png" id="2_gp3rj"]
+[ext_resource type="AudioStream" uid="uid://dtkm1vhl3tcfd" path="res://resources/sounds/move.ogg" id="3_6jkkk"]
+[ext_resource type="AudioStream" uid="uid://w3i48avv4by5" path="res://resources/sounds/capture.ogg" id="4_3dc4u"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_k4ovk"]
+
+[node name="chess_board" type="ChessBoard"]
+
+[node name="board_tilemap" type="TileMap" parent="."]
+position = Vector2(0, -1)
+tile_set = ExtResource("1_2hdnn")
+format = 2
+layer_0/name = "board_light"
+layer_0/modulate = Color(0.941176, 0.85098, 0.709804, 1)
+layer_0/tile_data = PackedInt32Array(0, 16, 0, 65537, 16, 0, 131074, 16, 0, 196611, 16, 0, 262148, 16, 0, 327685, 16, 0, 393222, 16, 0, 458759, 16, 0, 327687, 16, 0, 262150, 16, 0, 196613, 16, 0, 131076, 16, 0, 65539, 16, 0, 2, 16, 0, 4, 16, 0, 65541, 16, 0, 131078, 16, 0, 196615, 16, 0, 65543, 16, 0, 6, 16, 0, 458757, 16, 0, 393220, 16, 0, 327683, 16, 0, 262146, 16, 0, 196609, 16, 0, 131072, 16, 0, 262144, 16, 0, 327681, 16, 0, 393218, 16, 0, 458755, 16, 0, 458753, 16, 0, 393216, 16, 0)
+layer_1/name = "board_dark"
+layer_1/enabled = true
+layer_1/modulate = Color(0.709804, 0.533333, 0.388235, 1)
+layer_1/y_sort_enabled = false
+layer_1/y_sort_origin = 1
+layer_1/z_index = 0
+layer_1/tile_data = PackedInt32Array(1, 16, 0, 65538, 16, 0, 131075, 16, 0, 196612, 16, 0, 262149, 16, 0, 327686, 16, 0, 393223, 16, 0, 262151, 16, 0, 196614, 16, 0, 131077, 16, 0, 65540, 16, 0, 3, 16, 0, 5, 16, 0, 65542, 16, 0, 131079, 16, 0, 7, 16, 0, 262147, 16, 0, 327682, 16, 0, 393217, 16, 0, 458752, 16, 0, 458754, 16, 0, 327680, 16, 0, 196608, 16, 0, 262145, 16, 0, 393219, 16, 0, 458756, 16, 0, 458758, 16, 0, 393221, 16, 0, 327684, 16, 0, 196610, 16, 0, 131073, 16, 0, 65536, 16, 0)
+layer_2/name = "origin"
+layer_2/enabled = true
+layer_2/modulate = Color(0.941176, 0.337255, 0.831373, 0.301961)
+layer_2/y_sort_enabled = false
+layer_2/y_sort_origin = 0
+layer_2/z_index = 0
+layer_2/tile_data = PackedInt32Array()
+layer_3/name = "destination"
+layer_3/enabled = true
+layer_3/modulate = Color(0.847059, 0.14902, 0.517647, 0.603922)
+layer_3/y_sort_enabled = false
+layer_3/y_sort_origin = 0
+layer_3/z_index = 0
+layer_3/tile_data = PackedInt32Array()
+layer_4/name = "select"
+layer_4/enabled = true
+layer_4/modulate = Color(0.588235, 1, 0, 0.521569)
+layer_4/y_sort_enabled = false
+layer_4/y_sort_origin = 0
+layer_4/z_index = 0
+layer_4/tile_data = PackedInt32Array()
+layer_5/name = "check"
+layer_5/enabled = true
+layer_5/modulate = Color(1, 0, 0, 0.933333)
+layer_5/y_sort_enabled = false
+layer_5/y_sort_origin = 0
+layer_5/z_index = 0
+layer_5/tile_data = PackedInt32Array()
+layer_6/name = "pieces"
+layer_6/enabled = true
+layer_6/modulate = Color(1, 1, 1, 1)
+layer_6/y_sort_enabled = false
+layer_6/y_sort_origin = 0
+layer_6/z_index = 0
+layer_6/tile_data = PackedInt32Array(0, 5, 0, 1, 2, 0, 2, 0, 0, 3, 4, 0, 4, 1, 0, 5, 0, 0, 6, 2, 0, 7, 5, 0, 65536, 3, 0, 65537, 3, 0, 65539, 3, 0, 65540, 3, 0, 65541, 3, 0, 65542, 3, 0, 65543, 3, 0, 393216, 13, 0, 393217, 13, 0, 393218, 13, 0, 393219, 13, 0, 393221, 13, 0, 393222, 13, 0, 393223, 13, 0, 458752, 15, 0, 458753, 12, 0, 458754, 10, 0, 458755, 14, 0, 458756, 11, 0, 458757, 10, 0, 458759, 15, 0, 65538, 3, 0, 393220, 13, 0, 458758, 12, 0)
+
+[node name="win_window" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(360, 360)
+scale = Vector2(7, 0.875)
+texture = ExtResource("2_gp3rj")
+
+[node name="Label" type="Label" parent="win_window"]
+modulate = Color(0, 0, 0, 1)
+offset_left = -23.0
+offset_top = -24.0
+offset_right = 176.0
+offset_bottom = 2.0
+scale = Vector2(0.25, 2)
+text = "White won by checkmate!"
+
+[node name="cover_window" type="TextureRect" parent="."]
+offset_right = 720.0
+offset_bottom = 720.0
+texture = SubResource("CanvasTexture_k4ovk")
+
+[node name="move_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_6jkkk")
+volume_db = 7.0
+
+[node name="capture_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_3dc4u")
+volume_db = 7.0
