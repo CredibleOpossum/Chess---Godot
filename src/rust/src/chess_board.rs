@@ -36,9 +36,13 @@ pub enum Layers {
 
 fn wait_to_send_move(stream: &mut TcpStream, move_getter: &Receiver<ThreadMessage>) {
     for receieved_move in move_getter {
-        if let ThreadMessage::ChessMove(index) = receieved_move {
-            stream.write_all(&[index]).unwrap();
+        match receieved_move {
+            ThreadMessage::ChessMove(index) => {
+                stream.write_all(&[index]).unwrap();
+            }
+            _ => {}
         }
+        return;
     }
 }
 
