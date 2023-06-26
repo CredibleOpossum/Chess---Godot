@@ -36,13 +36,9 @@ pub enum Layers {
 
 fn wait_to_send_move(stream: &mut TcpStream, move_getter: &Receiver<ThreadMessage>) {
     for receieved_move in move_getter {
-        match receieved_move {
-            ThreadMessage::ChessMove(index) => {
-                stream.write_all(&[index]).unwrap();
-            }
-            _ => {}
+        if let ThreadMessage::ChessMove(index) = receieved_move {
+            stream.write_all(&[index]).unwrap();
         }
-        return;
     }
 }
 
@@ -67,13 +63,13 @@ fn networking(move_getter: &Receiver<ThreadMessage>, move_sender: &Sender<Thread
             move_sender.send(ThreadMessage::Color(chess_color)).unwrap();
             if chess_color == ChessColor::White {
                 loop {
-                    wait_to_send_move(&mut stream, &move_getter);
+                    wait_to_send_move(&mut stream, move_getter);
                     get_move(&mut stream, move_sender);
                 }
             } else {
                 loop {
                     get_move(&mut stream, move_sender);
-                    wait_to_send_move(&mut stream, &move_getter);
+                    wait_to_send_move(&mut stream, move_getter);
                 }
             }
         }
@@ -248,8 +244,14 @@ impl Node2DVirtual for ChessBoard {
             self.get_node_as::<Sprite2D>("win_window").set_visible(true);
             return;
         }
+        if self.position.get_board_state() == BoardState::Checkmate {
+            self.get_node_as::<Label>("win_window/Label").set_text("Stalemate!".into());
+
+            self.get_node_as::<Sprite2D>("win_window").set_visible(true);
+            return;
+        }
         let input = Input::singleton();
-        if &self.position.turn == &self.player_color && input.is_action_just_pressed("click_piece".into(), false) {
+        if self.position.turn == self.player_color && input.is_action_just_pressed("click_piece".into(), false) {
             handle_input(self, &mut board_tilemap, &self.thread_send.clone().unwrap());
         }
         for message in &self.thread_recv.clone().unwrap().try_recv() {
