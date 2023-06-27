@@ -35,14 +35,11 @@ pub enum Layers {
 }
 
 fn wait_to_send_move(stream: &mut TcpStream, move_getter: &Receiver<ThreadMessage>) {
-    for receieved_move in move_getter {
-        match receieved_move {
-            ThreadMessage::ChessMove(index) => {
-                stream.write_all(&[index]).unwrap();
-            }
-            _ => {}
+    for received_move in move_getter {
+        if let ThreadMessage::ChessMove(index) = received_move {
+            stream.write_all(&[index]).unwrap();
+            break; // Exit the loop after processing one element
         }
-        return;
     }
 }
 
@@ -53,7 +50,7 @@ fn get_move(stream: &mut TcpStream, move_sender: &Sender<ThreadMessage>) {
 }
 
 fn networking(move_getter: &Receiver<ThreadMessage>, move_sender: &Sender<ThreadMessage>) {
-    match TcpStream::connect("127.0.0.1:3333") {
+    match TcpStream::connect("127.0.0.1:3457") {
         Ok(mut stream) => {
             let mut buffer = vec![0u8];
             loop {

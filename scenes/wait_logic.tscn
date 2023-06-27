@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://b7tlhp01pd7s6"]
+
+[node name="WaitRoom" type="WaitRoom"]

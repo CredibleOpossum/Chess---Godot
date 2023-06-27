@@ -11,9 +11,19 @@ config_version=5
 [application]
 
 config/name="Chess - Godot"
-run/main_scene="res://scenes/debug_scene.tscn"
+run/main_scene="res://scenes/waiting.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
 boot_splash/show_image=false
+
+[autoload]
+
+GenerateAndWait="*res://scripts/generate_and_wait.gd"
+WaitLogic="*res://scenes/wait_logic.tscn"
+
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
 
 [input]
 

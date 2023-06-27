@@ -8,6 +8,7 @@ use godot::prelude::*;
 
 mod chess_board;
 mod game_behavior;
+mod waiting;
 
 struct ChessGame;
 

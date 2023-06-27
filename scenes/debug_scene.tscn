@@ -5,7 +5,7 @@
 [node name="Node2D" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.8, 0.8)
 
 [node name="chess_board" parent="." instance=ExtResource("1_4chkq")]
-position = Vector2(-360, -360)
+position = Vector2(-540, -540)
+scale = Vector2(1.5, 1.5)
