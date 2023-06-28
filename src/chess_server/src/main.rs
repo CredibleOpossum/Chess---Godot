@@ -49,7 +49,7 @@ fn main() {
                 Some(key) => {
                     key.push(stream);
 
-                    if key.len() >= 2 {
+                    while key.len() >= 2 {
                         let mut stream1 = key.pop().unwrap();
                         if !health_check(&mut stream1) {
                             continue;
