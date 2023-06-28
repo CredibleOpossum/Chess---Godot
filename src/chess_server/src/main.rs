@@ -72,9 +72,6 @@ fn main() {
                     connection_lookup.insert(number, vec![stream]);
                 }
             }
-            for key in &connection_lookup {
-                println!("{}, {}", key.0, key.1.len());
-            }
         }
     }
 }
