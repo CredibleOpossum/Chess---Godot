@@ -12,6 +12,8 @@ use crossbeam_channel::{unbounded, Receiver, Sender};
 
 use yacp::*;
 
+use crate::waiting::WaitRoom;
+
 const BOARD_SIZE: i32 = 8;
 const NO_VECT: Vector2i = Vector2i { x: 0, y: 0 };
 const NO_LOCATION: Location = Location { x: 0, y: 0 };
@@ -49,33 +51,22 @@ fn get_move(stream: &mut TcpStream, move_sender: &Sender<ThreadMessage>) {
     move_sender.send(ThreadMessage::ChessMove(buffer[0])).unwrap();
 }
 
-fn networking(move_getter: &Receiver<ThreadMessage>, move_sender: &Sender<ThreadMessage>) {
-    match TcpStream::connect("127.0.0.1:3457") {
-        Ok(mut stream) => {
-            let mut buffer = vec![0u8];
-            loop {
-                stream.read_exact(&mut buffer).unwrap();
-                if buffer[0] != 255 {
-                    break;
-                }
-                stream.write_all(&buffer).unwrap();
-            }
-            let chess_color = [ChessColor::White, ChessColor::Black][buffer[0] as usize];
-            move_sender.send(ThreadMessage::Color(chess_color)).unwrap();
-            if chess_color == ChessColor::White {
-                loop {
-                    wait_to_send_move(&mut stream, move_getter);
-                    get_move(&mut stream, move_sender);
-                }
-            } else {
-                loop {
-                    get_move(&mut stream, move_sender);
-                    wait_to_send_move(&mut stream, move_getter);
-                }
-            }
+fn networking(move_getter: &Receiver<ThreadMessage>, move_sender: &Sender<ThreadMessage>, stream: &mut TcpStream) {
+    let mut buffer = vec![0u8];
+
+    stream.read_exact(&mut buffer).unwrap();
+
+    let chess_color = [ChessColor::White, ChessColor::Black][buffer[0] as usize];
+    move_sender.send(ThreadMessage::Color(chess_color)).unwrap();
+    if chess_color == ChessColor::White {
+        loop {
+            wait_to_send_move(stream, move_getter);
+            get_move(stream, move_sender);
         }
-        Err(e) => {
-            eprintln!("{}", e);
+    } else {
+        loop {
+            get_move(stream, move_sender);
+            wait_to_send_move(stream, move_getter);
         }
     }
 }
@@ -203,11 +194,15 @@ impl Node2DVirtual for ChessBoard {
         if Engine::singleton().is_editor_hint() {
             return ChessBoard { base, position: fen_parser(STARTING_POSITION_FEN).unwrap(), player_color: ChessColor::None, is_holding_piece: false, held_piece: NO_LOCATION, last_move_origin: None, last_move_destination: None, invert_board: false, thread_send: None, thread_recv: None };
         }
+
         let (client_to_server_sender, client_to_server_receiver) = unbounded();
         let (server_to_client_sender, server_to_client_receiver) = unbounded();
 
+        let mut wait_room = Engine::singleton().get_main_loop().unwrap().cast::<SceneTree>().get_root().unwrap().get_node_as::<WaitRoom>("/root/WaitLogic/WaitRoom");
+        let mut stream = wait_room.bind_mut().get_stream_ownership();
+
         let _thread = thread::spawn(move || {
-            networking(&server_to_client_receiver, &client_to_server_sender);
+            networking(&server_to_client_receiver, &client_to_server_sender, &mut stream);
         });
 
         ChessBoard {

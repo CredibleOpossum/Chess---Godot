@@ -6,4 +6,4 @@ var number = randi_range(0,99999)
 
 func _ready():
 		print("client started, id is: " + str(number))
-		self.get_node("/root/WaitLogic").spawn_waiting_thread	(str(number))	
+		self.get_node("/root/WaitLogic/WaitRoom").spawn_waiting_thread	(str(number))	

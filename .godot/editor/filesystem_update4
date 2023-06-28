@@ -1,1 +1,7 @@
 res://scenes/waiting.tscn
+res://scenes/board_tilemap.tres
+res://scenes/wait_logic.tscn
+res://scenes/debug_scene.tscn
+res://scenes/chess_board.tscn
+res://scenes/timeout.tscn
+res://scenes/debug_bind.gd
