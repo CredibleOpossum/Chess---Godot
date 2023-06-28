@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://bi8e8c5lll30b"]
+
+[ext_resource type="Script" path="res://scripts/debug_bind.gd" id="1_3iqcb"]
+
+[node name="redirect" type="Node2D"]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.001
+autostart = true
+script = ExtResource("1_3iqcb")
+
+[connection signal="timeout" from="Timer" to="Timer" method="_on_timeout"]
