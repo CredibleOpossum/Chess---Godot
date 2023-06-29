@@ -1,4 +1,4 @@
 extends Node2D
 
 func _ready():
-	WaitRoom.try_connect(str(GenerateAndWait.number))
+	self.get_node("/root/WaitLogic/WaitRoom").try_connect(str(GenerateAndWait.number))

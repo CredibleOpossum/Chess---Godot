@@ -56,6 +56,7 @@ fn main() {
                         }
                         let mut stream2 = key.pop().unwrap();
                         if !health_check(&mut stream2) {
+                            key.push(stream1); // Pop pulled him out, he needs to be put back in the queue
                             continue;
                         }
 

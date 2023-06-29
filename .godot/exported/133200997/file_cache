@@ -1,3 +1,6 @@
-res://scenes/board_tilemap.tres::47626d6040e9e5ccbeaeacd3d00eaaac::1687825294::res://.godot/exported/133200997/export-6c494f5e2ec7f879076dc41de76edcfb-board_tilemap.res
-res://scenes/chess_board.tscn::f119c80753a604f9db16998843c08b6d::1687815963::res://.godot/exported/133200997/export-5f5712c67de24b6ff363887d66594fdb-chess_board.scn
-res://scenes/debug_scene.tscn::0864a4591eab8f901f1c5470bbc16bf3::1687825398::res://.godot/exported/133200997/export-77517d5bbaf3d4182590c6cd729defe5-debug_scene.scn
+res://scenes/board_tilemap.tres::47626d6040e9e5ccbeaeacd3d00eaaac::1687974588::res://.godot/exported/133200997/export-6c494f5e2ec7f879076dc41de76edcfb-board_tilemap.res
+res://scenes/chess_board.tscn::666ca86fea6b8cd174f02e09dca203ec::1687974670::res://.godot/exported/133200997/export-5f5712c67de24b6ff363887d66594fdb-chess_board.scn
+res://scenes/main_chess_scene.tscn::13e7d007b76513f2e3978a936d252a66::1687974670::res://.godot/exported/133200997/export-e5c1e39a0ca44ff3f4496972f734f402-main_chess_scene.scn
+res://scenes/timeout.tscn::e9ff874c168a7b20f72c6e0b59b66c3b::1687974670::res://.godot/exported/133200997/export-57e7a5200e12e3b0245fb2149f00d337-timeout.scn
+res://scenes/waiting.tscn::f10ff0d8578c22a4ac44faf14838a5bd::1687974670::res://.godot/exported/133200997/export-c6f60175425d95b46ce8ea4e9a838ad0-waiting.scn
+res://scenes/wait_logic.tscn::9e136d09258558b9b39c93e036950760::1687974670::res://.godot/exported/133200997/export-c85a71a46755f4189b889f05f24147b4-wait_logic.scn

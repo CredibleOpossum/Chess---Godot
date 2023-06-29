@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://b533tgo0b5v71"]
+[gd_scene load_steps=5 format=3 uid="uid://b533tgo0b5v71"]
 
 [ext_resource type="FontFile" uid="uid://c7ao1m1pilb13" path="res://fonts/FFFFORWA.TTF" id="1_xkd4q"]
 [ext_resource type="Script" path="res://scripts/show_code.gd" id="2_d2dd8"]
 [ext_resource type="Script" path="res://scripts/code_input.gd" id="3_hmc2b"]
+[ext_resource type="Script" path="res://scenes/copy.gd" id="4_pje50"]
 
 [node name="waiting" type="Node2D"]
 
@@ -54,4 +55,14 @@ offset_right = 150.0
 offset_bottom = 326.0
 script = ExtResource("3_hmc2b")
 
+[node name="Button" type="Button" parent="."]
+offset_left = -72.0
+offset_top = -112.0
+offset_right = 72.0
+offset_bottom = -80.0
+text = "Copy
+"
+script = ExtResource("4_pje50")
+
 [connection signal="text_submitted" from="LineEdit" to="LineEdit" method="_on_text_submitted"]
+[connection signal="button_down" from="Button" to="Button" method="_on_button_down"]

@@ -7,7 +7,7 @@ use godot::engine::Engine;
 use godot::prelude::*;
 use godot::prelude::{Base, GodotClass};
 
-const ADDR: &str = "127.0.0.1:3333";
+const ADDR: &str = "172.105.24.197:3333";
 
 enum ThreadMessage {
     TryConnect(u32),
@@ -95,7 +95,6 @@ impl Node2DVirtual for WaitRoom {
             return;
         }
         if let Ok(message) = self.thread_recv.clone().unwrap().try_recv() {
-            godot_print!("test");
             match message {
                 ThreadMessage::GameStart(stream) => {
                     self.stream = Some(stream);

@@ -1,8 +1,11 @@
 extends RichTextLabel
 
-func _ready():
+func get_num_string():
 	var string_num = str(GenerateAndWait.number)
 	var padding = ""
 	for i in 5 - len(string_num):
 		padding += "0"
-	self.set_text("[center]" + padding + string_num)
+	return padding + string_num;
+
+func _ready():
+	self.set_text("[center]" + get_num_string())
