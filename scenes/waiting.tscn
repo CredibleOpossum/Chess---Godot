@@ -1,61 +1,104 @@
-[gd_scene load_steps=5 format=3 uid="uid://b533tgo0b5v71"]
+[gd_scene load_steps=6 format=3 uid="uid://b533tgo0b5v71"]
 
 [ext_resource type="FontFile" uid="uid://c7ao1m1pilb13" path="res://fonts/FFFFORWA.TTF" id="1_xkd4q"]
 [ext_resource type="Script" path="res://scripts/show_code.gd" id="2_d2dd8"]
 [ext_resource type="Script" path="res://scripts/code_input.gd" id="3_hmc2b"]
 [ext_resource type="Script" path="res://scenes/copy.gd" id="4_pje50"]
+[ext_resource type="TileSet" uid="uid://cnwmh6g0i38iq" path="res://scenes/board_tilemap.tres" id="5_52yte"]
 
 [node name="waiting" type="Node2D"]
 
+[node name="board_tilemap" type="TileMap" parent="."]
+position = Vector2(-504, -504)
+scale = Vector2(1.4, 1.4)
+tile_set = ExtResource("5_52yte")
+format = 2
+layer_0/name = "board_light"
+layer_0/modulate = Color(0.941176, 0.85098, 0.709804, 1)
+layer_0/tile_data = PackedInt32Array(65537, 16, 0, 131074, 16, 0, 196611, 16, 0, 262148, 16, 0, 327685, 16, 0, 393222, 16, 0, 458759, 16, 0, 327687, 16, 0, 262150, 16, 0, 196613, 16, 0, 131076, 16, 0, 65539, 16, 0, 2, 16, 0, 4, 16, 0, 65541, 16, 0, 131078, 16, 0, 196615, 16, 0, 65543, 16, 0, 6, 16, 0, 458757, 16, 0, 393220, 16, 0, 327683, 16, 0, 262146, 16, 0, 196609, 16, 0, 327681, 16, 0, 393218, 16, 0, 458755, 16, 0, 458753, 16, 0, 8, 16, 0, 131080, 16, 0, 262152, 16, 0, 393224, 16, 0, 458761, 16, 0, 327689, 16, 0, 196617, 16, 0, 65545, 16, 0, 10, 16, 0, 131082, 16, 0, 262154, 16, 0, 393226, 16, 0, 458763, 16, 0, 327691, 16, 0, 196619, 16, 0, 65547, 16, 0, 12, 16, 0, 131084, 16, 0, 262156, 16, 0, 393228, 16, 0, 131067, 16, 0, 262139, 16, 0, 393211, 16, 0, 524283, 16, 0, 65532, 16, 0, 196604, 16, 0, 327676, 16, 0, 458748, 16, 0, 131069, 16, 0, 262141, 16, 0, 393213, 16, 0, 524285, 16, 0, 65534, 16, 0, 196606, 16, 0, 327678, 16, 0, 458750, 16, 0, 131071, 16, 0, 262143, 16, 0, 393215, 16, 0, 524287, 16, 0, 131072, 16, 0, 262144, 16, 0, 393216, 16, 0, 0, 16, 0, 524296, 16, 0, 524294, 16, 0, 524292, 16, 0, 524290, 16, 0, 524288, 16, 0, 589822, 16, 0, 589820, 16, 0, 524298, 16, 0, 524300, 16, 0, -65531, 16, 0, -65529, 16, 0, -65527, 16, 0, -65525, 16, 0, -65533, 16, 0, -65535, 16, 0, -1, 16, 0, -3, 16, 0, -5, 16, 0)
+layer_1/name = "board_dark"
+layer_1/enabled = true
+layer_1/modulate = Color(0.709804, 0.533333, 0.388235, 1)
+layer_1/y_sort_enabled = false
+layer_1/y_sort_origin = 1
+layer_1/z_index = 0
+layer_1/tile_data = PackedInt32Array(65538, 16, 0, 131075, 16, 0, 196612, 16, 0, 262149, 16, 0, 327686, 16, 0, 393223, 16, 0, 262151, 16, 0, 196614, 16, 0, 131077, 16, 0, 65540, 16, 0, 3, 16, 0, 5, 16, 0, 65542, 16, 0, 131079, 16, 0, 7, 16, 0, 262147, 16, 0, 327682, 16, 0, 393217, 16, 0, 458752, 16, 0, 458754, 16, 0, 327680, 16, 0, 196608, 16, 0, 262145, 16, 0, 393219, 16, 0, 458756, 16, 0, 458758, 16, 0, 393221, 16, 0, 327684, 16, 0, 196610, 16, 0, 131073, 16, 0, 458747, 16, 0, 524284, 16, 0, 458749, 16, 0, 524286, 16, 0, 458751, 16, 0, 393214, 16, 0, 393212, 16, 0, 327675, 16, 0, 262140, 16, 0, 196603, 16, 0, 131068, 16, 0, 65531, 16, 0, 65533, 16, 0, 131070, 16, 0, 196605, 16, 0, 262142, 16, 0, 327677, 16, 0, 327679, 16, 0, 196607, 16, 0, 65535, 16, 0, 1, 16, 0, 65544, 16, 0, 131081, 16, 0, 196616, 16, 0, 262153, 16, 0, 327688, 16, 0, 458760, 16, 0, 393225, 16, 0, 458762, 16, 0, 393227, 16, 0, 327690, 16, 0, 458764, 16, 0, 327692, 16, 0, 262155, 16, 0, 196618, 16, 0, 196620, 16, 0, 131083, 16, 0, 65546, 16, 0, 11, 16, 0, 65548, 16, 0, 9, 16, 0, 65536, 16, 0, 524299, 16, 0, 524297, 16, 0, 524295, 16, 0, 524293, 16, 0, 524291, 16, 0, 524289, 16, 0, 589823, 16, 0, 589821, 16, 0, 589819, 16, 0, -4, 16, 0, -2, 16, 0, -65536, 16, 0, -65534, 16, 0, -65532, 16, 0, -65530, 16, 0, -65528, 16, 0, -65526, 16, 0, -65524, 16, 0)
+layer_2/name = "origin"
+layer_2/enabled = true
+layer_2/modulate = Color(0.941176, 0.337255, 0.831373, 0.301961)
+layer_2/y_sort_enabled = false
+layer_2/y_sort_origin = 0
+layer_2/z_index = 0
+layer_2/tile_data = PackedInt32Array()
+layer_3/name = "destination"
+layer_3/enabled = true
+layer_3/modulate = Color(0.847059, 0.14902, 0.517647, 0.603922)
+layer_3/y_sort_enabled = false
+layer_3/y_sort_origin = 0
+layer_3/z_index = 0
+layer_3/tile_data = PackedInt32Array()
+layer_4/name = "select"
+layer_4/enabled = true
+layer_4/modulate = Color(0.588235, 1, 0, 0.521569)
+layer_4/y_sort_enabled = false
+layer_4/y_sort_origin = 0
+layer_4/z_index = 0
+layer_4/tile_data = PackedInt32Array()
+layer_5/name = "check"
+layer_5/enabled = true
+layer_5/modulate = Color(1, 0, 0, 0.933333)
+layer_5/y_sort_enabled = false
+layer_5/y_sort_origin = 0
+layer_5/z_index = 0
+layer_5/tile_data = PackedInt32Array()
+layer_6/name = "pieces"
+layer_6/enabled = true
+layer_6/modulate = Color(1, 1, 1, 1)
+layer_6/y_sort_enabled = false
+layer_6/y_sort_origin = 0
+layer_6/z_index = 0
+layer_6/tile_data = PackedInt32Array(0, 5, 0, 1, 2, 0, 2, 0, 0, 3, 4, 0, 4, 1, 0, 5, 0, 0, 6, 2, 0, 7, 5, 0, 65536, 3, 0, 65537, 3, 0, 65539, 3, 0, 65541, 3, 0, 65542, 3, 0, 65543, 3, 0, 393216, 13, 0, 393217, 13, 0, 393218, 13, 0, 393221, 13, 0, 393222, 13, 0, 393223, 13, 0, 458752, 15, 0, 458753, 12, 0, 458754, 10, 0, 458755, 14, 0, 458756, 11, 0, 458757, 10, 0, 458759, 15, 0, 65538, 3, 0, 458758, 12, 0, 327683, 13, 0, 262148, 13, 0, 131074, 2, 0, 196612, 3, 0)
+
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_left = -498.0
-offset_top = -324.0
-offset_right = 502.0
-offset_bottom = -74.0
-color = Color(0.270588, 0.270588, 0.270588, 1)
+[node name="code_container" type="Node2D" parent="."]
+position = Vector2(0, 88)
 
-[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect"]
-layout_mode = 0
-offset_top = 56.0
-offset_right = 1000.0
-offset_bottom = 306.0
-theme_override_fonts/normal_font = ExtResource("1_xkd4q")
-theme_override_font_sizes/normal_font_size = 128
-bbcode_enabled = true
-script = ExtResource("2_d2dd8")
-
-[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+[node name="RichTextLabel2" type="RichTextLabel" parent="code_container"]
 offset_left = -500.0
 offset_top = -428.0
 offset_right = 502.0
 offset_bottom = -268.0
-theme_override_colors/default_color = Color(0, 1, 0, 1)
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 4
 theme_override_fonts/normal_font = ExtResource("1_xkd4q")
 theme_override_font_sizes/normal_font_size = 64
 bbcode_enabled = true
 text = "[center]Invite Code"
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
+[node name="ColorRect" type="ColorRect" parent="code_container"]
 offset_left = -498.0
-offset_top = 117.0
+offset_top = -324.0
 offset_right = 502.0
-offset_bottom = 617.0
-theme_override_colors/default_color = Color(0, 1, 0, 1)
+offset_bottom = -74.0
+color = Color(0.270588, 0.270588, 0.270588, 0.843137)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="code_container/ColorRect"]
+layout_mode = 0
+offset_top = 56.0
+offset_right = 1000.0
+offset_bottom = 306.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 10
+theme_override_constants/shadow_offset_y = 10
 theme_override_fonts/normal_font = ExtResource("1_xkd4q")
-theme_override_font_sizes/normal_font_size = 64
+theme_override_font_sizes/normal_font_size = 128
 bbcode_enabled = true
-text = "[center]Or Enter"
+script = ExtResource("2_d2dd8")
 
-[node name="LineEdit" type="LineEdit" parent="."]
-offset_left = -150.0
-offset_top = 226.0
-offset_right = 150.0
-offset_bottom = 326.0
-script = ExtResource("3_hmc2b")
-
-[node name="Button" type="Button" parent="."]
+[node name="Button" type="Button" parent="code_container"]
 offset_left = -72.0
 offset_top = -112.0
 offset_right = 72.0
@@ -64,5 +107,26 @@ text = "Copy
 "
 script = ExtResource("4_pje50")
 
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = -498.0
+offset_top = 117.0
+offset_right = 502.0
+offset_bottom = 617.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 4
+theme_override_fonts/normal_font = ExtResource("1_xkd4q")
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+text = "[center]Enter Code
+"
+
+[node name="LineEdit" type="LineEdit" parent="."]
+offset_left = -150.0
+offset_top = 226.0
+offset_right = 150.0
+offset_bottom = 326.0
+script = ExtResource("3_hmc2b")
+
+[connection signal="button_down" from="code_container/Button" to="code_container/Button" method="_on_button_down"]
 [connection signal="text_submitted" from="LineEdit" to="LineEdit" method="_on_text_submitted"]
-[connection signal="button_down" from="Button" to="Button" method="_on_button_down"]

@@ -1,7 +1,7 @@
-res://scenes/timeout.tscn
-res://scenes/board_tilemap.tres
-res://scripts/notify_server.gd
 res://scenes/waiting.tscn
+res://scripts/code_input.gd
+res://scenes/board_tilemap.tres
 res://scenes/wait_logic.tscn
 res://scenes/main_chess_scene.tscn
 res://scenes/chess_board.tscn
+res://scenes/timeout.tscn
