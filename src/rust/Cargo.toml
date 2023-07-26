@@ -8,6 +8,6 @@ crate-type = ["cdylib"]
 
 [dependencies]
 crossbeam-channel = "0.5.7"
-godot = { git = "https://github.com/godot-rust/gdext", branch = "master" }
+godot = { git = "https://github.com/godot-rust/gdext", rev = "4107ee6" }
 yacp = { git = "https://github.com/CredibleOpossum/yacp", branch = "main" }
 once_cell = "1.18.0"
